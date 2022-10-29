@@ -9,13 +9,22 @@ from api.serializers import (
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from drf_spectacular.utils import extend_schema
 
 
 class ConverterView(APIView):
+    @extend_schema(
+        parameters=[ConverterRequestSerializer],
+        responses={200: ConvertResponseSerializer}
+    )
     def get(self, request):
         data = request.GET
         return self.convert(data)
 
+    @extend_schema(
+        request=ConverterRequestSerializer,
+        responses={200: ConvertResponseSerializer},
+    )
     def post(self, request):
         data = request.data
         return self.convert(data)
@@ -39,6 +48,10 @@ class AlphabetView(APIView):
         {"alphabet": k, "katakana": v} for k, v in A2K.items() if k.islower()
     ]
 
+    @extend_schema(
+        parameters=[AlphabetRequestSerializer],
+        responses={200: AlphabetTableSerializer}
+    )
     def get(self, request):
         data = request.GET
         serializer = AlphabetRequestSerializer(data=data)
