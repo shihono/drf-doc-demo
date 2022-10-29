@@ -9,9 +9,14 @@ from api.serializers import (
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from .custom_schema import CustomSchema, CustomFilterBackend
 
 
 class ConverterView(APIView):
+    schema = CustomSchema()
+    parameter_serializer = ConverterRequestSerializer()
+    filter_backends = [CustomFilterBackend]
+
     def get(self, request):
         data = request.GET
         return self.convert(data)
@@ -30,8 +35,18 @@ class ConverterView(APIView):
         res_serializer.is_valid()
         return Response(res_serializer.validated_data, status=status.HTTP_200_OK)
 
+    def get_serializer(self):
+        return ConvertResponseSerializer()
+
+    def get_request_serializer(self):
+        return ConverterRequestSerializer()
+
 
 class AlphabetView(APIView):
+    schema = CustomSchema()
+    parameter_serializer = AlphabetRequestSerializer()
+    filter_backends = [CustomFilterBackend]
+
     upper_items = [
         {"alphabet": k, "katakana": v} for k, v in A2K.items() if k.isupper()
     ]
@@ -56,3 +71,7 @@ class AlphabetView(APIView):
         )
         res_serializer.is_valid()
         return Response(res_serializer.validated_data, status=status.HTTP_200_OK)
+
+    def get_serializer(self):
+        return AlphabetTableSerializer()
+
