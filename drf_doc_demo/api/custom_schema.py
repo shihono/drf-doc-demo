@@ -1,5 +1,3 @@
-import warnings
-
 from rest_framework.schemas.openapi import AutoSchema
 from rest_framework.filters import BaseFilterBackend
 from rest_framework import exceptions
@@ -17,7 +15,10 @@ class CustomSchema(AutoSchema):
         if not hasattr(view, 'get_request_serializer'):
             return super().get_request_serializer(path, method)
 
-        return view.get_request_serializer()
+        try:
+            return view.get_request_serializer()
+        except exceptions.APIException:
+            return super().get_request_serializer(path, method)
 
 
 class CustomFilterBackend(BaseFilterBackend):
