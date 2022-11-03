@@ -4,7 +4,7 @@ from api.serializers import (
     AlphabetRequestSerializer,
     AlphabetTableSerializer,
     ConverterRequestSerializer,
-    ConvertResponseSerializer,
+    ConverterResponseSerializer,
 )
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
@@ -30,7 +30,7 @@ class ConverterView(RetrieveAPIView):
         validated_data = serializer.validated_data
         result = a2k(**validated_data)
 
-        res_serializer = ConvertResponseSerializer(data={"text": result})
+        res_serializer = ConverterResponseSerializer(data={"text": result})
         res_serializer.is_valid()
         return Response(res_serializer.validated_data, status=status.HTTP_200_OK)
 

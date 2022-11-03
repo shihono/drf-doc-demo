@@ -7,7 +7,7 @@ class ConverterRequestSerializer(serializers.Serializer):
     numeral = serializers.BooleanField(required=False, help_text="数字も変換するフラグ")
 
 
-class ConvertResponseSerializer(serializers.Serializer):
+class ConverterResponseSerializer(serializers.Serializer):
     text = serializers.CharField()
 
 
