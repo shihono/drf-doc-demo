@@ -6,10 +6,10 @@ from api.serializers import (
     ConverterRequestSerializer,
     ConverterResponseSerializer,
 )
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
-from drf_spectacular.utils import extend_schema
 
 
 class ConverterView(RetrieveAPIView):
@@ -17,7 +17,7 @@ class ConverterView(RetrieveAPIView):
 
     @extend_schema(
         parameters=[ConverterRequestSerializer],
-        responses={200: ConverterResponseSerializer}
+        responses={200: ConverterResponseSerializer},
     )
     def get(self, request):
         data = request.GET
@@ -47,8 +47,7 @@ class AlphabetView(RetrieveAPIView):
     serializer_class = AlphabetRequestSerializer
 
     @extend_schema(
-        parameters=[AlphabetRequestSerializer],
-        responses={200: AlphabetTableSerializer}
+        parameters=[AlphabetRequestSerializer], responses={200: AlphabetTableSerializer}
     )
     def get(self, request, *args, **kwargs):
         """アルファベットの変換テーブルとその要素数を返すGET method"""
