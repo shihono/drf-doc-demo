@@ -29,3 +29,10 @@ poetry run python manage.py runserver
 ```
 
 Starting server at http://127.0.0.1:8000/
+
+### drf-spectacularを使ったドキュメント生成
+
+[drf-spectacular](https://github.com/tfranzel/drf-spectacular)
+
+- oai http://127.0.0.1:8000/api/schema/
+- swagger-ui http://127.0.0.1:8000/api/schema/swagger-ui/
