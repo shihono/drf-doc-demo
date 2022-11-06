@@ -29,3 +29,10 @@ poetry run python manage.py runserver
 ```
 
 Starting server at http://127.0.0.1:8000/
+
+### カスタマイズしたSchemaクラスでのドキュメント生成
+
+[custom_schema.py](drf_doc_demo/api/custom_schema.py)
+
+- oai http://127.0.0.1:8000/openapi
+- swagger-ui http://127.0.0.1:8000/swagger-ui/
