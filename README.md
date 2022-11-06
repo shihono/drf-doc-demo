@@ -29,3 +29,8 @@ poetry run python manage.py runserver
 ```
 
 Starting server at http://127.0.0.1:8000/
+
+### AutoSchemaを使ったドキュメント生成
+
+- oai http://127.0.0.1:8000/openapi
+- swagger-ui http://127.0.0.1:8000/swagger-ui/
