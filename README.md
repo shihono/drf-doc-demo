@@ -4,6 +4,13 @@
 「OAI3を使ったDjango REST frameworkのドキュメント生成とカスタマイズ」
 のサンプルコードです。
 
+## 発表資料
+- [Speaker Deck](https://speakerdeck.com/shihono/djangocongress-jp-2022)
+- [PDF](https://shihono.github.io/pdfs/djangocongress_jp_2022_oai3_drf.pdf)
+
+資料のfooterに記載しているブランチ名とこのレポジトリのブランチ名が対応しています。
+
+ブランチごと異なる方法でドキュメント生成を実装しています。
 
 ## Setting
 
